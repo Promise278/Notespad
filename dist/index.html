@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Note App</title>
+</head>
+<body class="bg-[#f4f4f4]">
+    <h1 class="text-4xl text-center pt-4 text-blue-500 font-bold">📝 My Notes</h1>
+    <div class="flex flex-col mt-8 md:justify-center justify-left md:items-center items-left md:ml-0 ml-12">
+        <!-- <label for="notetitle">Note Title</label> -->
+        <input class="border-2 border-black rounded-md pl-2 h-12 w-72" type="text" id="notetitle" placeholder="Note Title" />
+        <textarea class="border-2 border-blue-500 rounded-md w-96 h-72 mt-6 pl-2 pt-2" id="notecontent" placeholder="Note Content"></textarea>
+        <button class="bg-lime-500 text-white h-12 w-32 text-2xl font-bold mt-4 rounded-md" id="add-note">Add Note</button>
+    </div>
+    <div id="noteholder" class="flex flex-col w-11/12 sm:w-8/12 md:w-11/12 lg:w-6/12 p-4 md:p-5 bg-white mx-auto mt-4">
+        <h2 class="text-3xl font-bold text-center">Notes</h2>
+    </div>
+
+    <script>
+        let notetitle = document.getElementById("notetitle")
+        let textarea = document.getElementById("notecontent")
+        let button = document.getElementById("add-note")
+        let noteitems = document.getElementById("noteholder")
+
+        button.addEventListener("click", () => {
+            let title = document.getElementById("notetitle")
+            let note = document.getElementById("notecontent")
+
+
+            let Time = new Date().toLocaleString()
+
+            let notetaken = document.createElement("p")
+            notetaken.innerHTML = `<span>${Time}</span><div class="flex flex-col gap-5"> <span class="text-2xl font-bold">${title.value}</span><span>${note.value}</span><svg class="deleteNote" xmlns="http://www.w3.org/2000/svg" height="44px" viewBox="0 -960 960 960" width="44px" fill="#000000"><path d="M280-120q-33 0-56.5-23.5T200-200v-520h-40v-80h200v-40h240v40h200v80h-40v520q0 33-23.5 56.5T680-120H280Zm400-600H280v520h400v-520ZM360-280h80v-360h-80v360Zm160 0h80v-360h-80v360ZM280-720v520-520Z"/></svg></div>`
+            noteitems.appendChild(notetaken)
+
+
+            title.value = "";
+            note.value = "";
+
+
+            let deleteBtn = notetaken.querySelector(".deleteNote");
+
+            deleteBtn.addEventListener("click", () => {
+                notetaken.remove();
+            });
+        })
+
+        
+    </script>
+</body>
+</html>
